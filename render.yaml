@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: myweb
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn miweb.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: myweb.settings
