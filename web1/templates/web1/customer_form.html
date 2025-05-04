@@ -1,0 +1,67 @@
+{% extends "web1/base.html" %}
+
+{% block content %}
+
+{% if not nuevo_cliente %}
+
+
+    <div class="card">
+        <div class="card-body">
+            <form method="get"action="/portalagente/customer_list/{{customer_id}}/new_contract"> 
+                <input class = "btn btn-primary" type="submit" value="Nuevo Contrato">
+            </form>
+        </div>
+    </div>
+    
+
+{% endif %}
+    <div class="card">
+        <div class="card-body">
+            <h4>Ficha Cliente</h4>
+            
+            <form action="" method="post">
+                <div class="row">
+                    {% csrf_token %}
+                    {{ form }}
+                </div>
+                <br>
+                <input class = "btn btn-primary" type="submit" value="Guardar">
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Contratos</h4>
+            {% if table_contratos %}
+                <table class ="table table-sm">
+                    <tr>
+                        <th>Code</th>
+                        <th>Suministro</th>
+                        <th>CUPS</th>
+                        <th>Estado</th>
+                        <th>Fecha Firma</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Tarifa ATR</th>
+                        <th>Producto</th>
+                        <th></th>
+                    </tr>
+                {% for row in table_contratos %}
+                    <tr>
+                        <td><button type="button" class="btn btn-light btn-sm"><a class="nav-link" href="/portalagente/contract_list/{{row.id}}">{{row.code}}</a></button></td>
+                        <td>{{row.supply}}</td>
+                        <td>{{row.cups}}</td>
+                        <td>{{row.status}}</td>
+                        <td>{{row.sign_date|date:"d/m/Y"}}</td>
+                        <td>{{row.start_date|date:"d/m/Y"}}</td>
+                        <td>{{row.end_date|date:"d/m/Y"}}</td>
+                        <td>{{row.tarifa_atr}}</td>
+                        <td>{{row.producto}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            {% endif %} 
+
+
+{% endblock %}

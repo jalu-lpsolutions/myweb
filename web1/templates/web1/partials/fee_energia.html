@@ -1,0 +1,13 @@
+<input 
+    type="number" 
+    name="fee_energia"
+    id="id_fee_energia"
+    class="form-control" 
+    step="0.01" 
+    hx-get="/portalagente/htmx/cargar_fee_energia/"
+    hx-trigger="change from:#id_producto"
+    hx-target="#id_fee_energia"
+    hx-include="#id_producto"
+    hx-swap="outerHTML"
+    {% if fee_disponible %} {% else %} disabled {% endif %}
+/>

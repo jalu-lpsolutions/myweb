@@ -1,0 +1,4 @@
+<option value="">Seleccione una Tarifa</optnaion>
+{% for tarifa in tarifas %}
+    <option value="{{ tarifa.id }}">{{ tarifa.code }}</option>
+{% endfor %}

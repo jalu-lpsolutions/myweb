@@ -1,0 +1,73 @@
+{% extends "web1/base.html" %}
+
+{% block content %}
+    
+    <div class="card">
+        <div class="card-body">
+            <button class="btn btn-primary"><a class="nav-link" href="/web1/customer_list/new_customer">Nuevo cliente</a></button>
+        </div>
+    </div>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        A simple success alert—check it out!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+
+    <div class="card">
+        <div class="card-body">
+            <form action="" method="get">
+                <div class="row">
+                    {% csrf_token %}
+                    {{ CustomerFilterForm }}
+                </div>
+                <br>
+                <input class = "btn btn-primary" type="submit" value="Buscar">
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            {% if table %}
+                <table id="mytable" class ="table table-sm">
+                    <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Razón Social</th>
+                        <th>Nombre</th>
+                        <th>Apellido1</th>
+                        <th>Apellido2</th>
+                        <th>Movil</th>
+                        <th>Email</th>
+                        <th>Tipo Cliente</th>
+                    </tr>
+                    </thead>
+                    
+                    <tbody>
+                {% for row in table %}
+                    <tr>
+                        <td><button type="button" class="btn btn-light btn-sm"><a class="nav-link" href="/web1/customer_list/{{row.id}}">{{row.code}}</a></button></td>
+                        <td>{{row.cif}}</td>
+                        <td>{{row.nombre}}</td>
+                        <td>{{row.apellido1}}</td>
+                        <td>{{row.apellido2}}</td>
+                        <td>{{row.movil}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.customer_type}}</td>
+                    </tr>
+                    
+                {% endfor %}
+                </tbody>
+                </table>
+            {% endif %} 
+
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
+ 

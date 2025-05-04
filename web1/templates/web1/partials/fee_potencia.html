@@ -1,0 +1,13 @@
+<input 
+    type="number" 
+    name="fee_potencia"
+    id="id_fee_potencia"
+    class="form-control" 
+    step="0.01" 
+    hx-get="/portalagente/htmx/cargar_fee_potencia/"
+    hx-trigger="change from:#id_producto"
+    hx-target="#id_fee_potencia"
+    hx-include="#id_producto"
+    hx-swap="outerHTML"
+    {% if fee_disponible %} {% else %} disabled {% endif %}
+/>

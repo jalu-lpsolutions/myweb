@@ -1,0 +1,50 @@
+{% extends "registration/base_reg.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<div class="row">
+
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+        <div class="card" style="margin-top: 50px;">
+            {% load static %}
+            <img src="{% static 'portalagente/logit.jpg' %}">
+            <div class="card-body">
+                <form method="post" action="/web1/credentials/">
+                    {% csrf_token %}
+
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    <br>
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    <br>
+
+                    <input class= "btn btn-primary" type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
