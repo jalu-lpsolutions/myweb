@@ -1,1 +1,1 @@
-web: gunicorn djangoproyect.wsgi
+web: gunicorn myweb.wsgi
