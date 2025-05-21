@@ -3,7 +3,7 @@ services:
     name: myweb
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn myweb.wsgi:application
+    startCommand: gunicorn myweb.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: myweb.settings
